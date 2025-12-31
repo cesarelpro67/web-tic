@@ -17,8 +17,8 @@ Página web creada con **HTML, CSS y JavaScript** y alojada en **GitHub Pages** 
 ---
 
 ## Tecnologías utilizadas
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 - GitHub Pages
 
