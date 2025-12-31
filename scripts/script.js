@@ -1,50 +1,50 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ===== 1. Intercambio de imágenes ===== */
+  console.log("✅ JavaScript cargado correctamente");
+
+  /* ===== 1. Cambio de imágenes al hacer clic ===== */
+  let imagenActual = 1;
   const imagen = document.getElementById("imagenInteractiva");
-  let estado = 1;
 
   if (imagen) {
     imagen.addEventListener("click", () => {
-      if (estado === 1) {
-        imagen.src = "images/img2.jpg";
-        estado = 2;
-      } else {
-        imagen.src = "images/img1.jpg";
-        estado = 1;
-      }
+      imagenActual = imagenActual === 1 ? 2 : 1;
+      imagen.src = `images/img${imagenActual}.jpg`;
     });
   }
 
   /* ===== 2. Campo de texto interactivo ===== */
   const input = document.getElementById("textoUsuario");
-  const resultado = document.getElementById("resultadoTexto");
+  const textoResultado = document.getElementById("resultadoTexto");
 
-  if (input && resultado) {
+  if (input && textoResultado) {
     input.addEventListener("input", () => {
-      if (input.value.trim() === "") {
-        resultado.textContent = "El texto cambiará cuando escribas.";
+      if (input.value.trim() !== "") {
+        textoResultado.innerText = "Has escrito: " + input.value;
       } else {
-        resultado.textContent = "Has escrito: " + input.value;
+        textoResultado.innerText = "El texto cambiará cuando escribas.";
       }
     });
   }
 
   /* ===== 3. Objeto en movimiento ===== */
-  const planeta = document.getElementById("planeta");
-  let posicion = 0;
+  const objeto = document.getElementById("planeta");
+  let posX = 0;
+  let velocidad = 2;
 
-  function mover() {
-    if (!planeta) return;
+  function moverObjeto() {
+    if (!objeto) return;
 
-    posicion += 1;
-    planeta.style.left = posicion + "px";
+    posX += velocidad;
 
-    if (posicion < 300) {
-      requestAnimationFrame(mover);
+    if (posX > 300 || posX < 0) {
+      velocidad = -velocidad;
     }
+
+    objeto.style.left = posX + "px";
+    requestAnimationFrame(moverObjeto);
   }
 
-  mover();
+  moverObjeto();
 
 });
